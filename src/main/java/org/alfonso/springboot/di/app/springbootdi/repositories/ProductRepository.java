@@ -20,4 +20,12 @@ public class ProductRepository {
     public List<Product> findAll(){
         return data;
     }
+
+    public Product findById(Long id){
+        return data.stream()
+                .filter(p -> p.getId().equals(id))  // obtenemos el elemento buscado -- devuelve un flujo con stream - un elemento
+                .findFirst() // devuelve un Optional(para evitar en nullPointerexception) de tipo Producto
+//                .orElseThrow(); // devuelve el objeto Producto -- devuelve excepcion sino se encontro
+                .orElse(null);
+    }
 }
