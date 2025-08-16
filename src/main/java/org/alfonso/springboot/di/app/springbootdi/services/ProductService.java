@@ -14,12 +14,14 @@ public class ProductService {
     public List<Product> findAll(){
         return repository.findAll().stream()
                 .map(p -> {
-                    Double priceImp = p.getPrice() * 1.25d;
-                    Product newProduct = new Product(p.getId(), p.getName(), priceImp.longValue());
+                    Double priceTax = p.getPrice() * 1.25d;
+//                    Product newProduct = new Product(p.getId(), p.getName(), priceTax.longValue());
+                    Product newProduct = (Product)  p.clone();
+                    newProduct.setPrice(priceTax.longValue());
                     return newProduct;
                 }).collect(Collectors.toList());
 
-        /*return repository.findAll().stream()
+        /*return repository.findAll().stream() // en una bd no sucede
                 .map(p -> {
                     Double priceImp = p.getPrice() * 1.25d;
                     p.setPrice(priceImp.longValue());
