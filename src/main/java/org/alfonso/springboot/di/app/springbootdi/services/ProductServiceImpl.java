@@ -12,8 +12,14 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
+    //    @Autowired // inyeccion mediante atributo
     private ProductRepository repository;
+
+    //  inyeccion mediante metodo setter
+    @Autowired
+    public void setRepository(ProductRepository repository) {
+        this.repository = repository;
+    }
 
 
      @Override
