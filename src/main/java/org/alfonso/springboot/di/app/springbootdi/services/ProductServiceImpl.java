@@ -16,13 +16,18 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository repository;
 
     //  inyeccion mediante metodo setter
-    @Autowired
-    public void setRepository(ProductRepository repository) {
+//    @Autowired
+//    public void setRepository(ProductRepository repository) {
+//        this.repository = repository;
+//    }
+
+
+    // inyeccion de dependencia mediante constructor -- no requiere @Autowired
+    public ProductServiceImpl(ProductRepository repository) {
         this.repository = repository;
     }
 
-
-     @Override
+    @Override
     public List<Product> findAll(){
         return repository.findAll().stream()
                 .map(p -> {
