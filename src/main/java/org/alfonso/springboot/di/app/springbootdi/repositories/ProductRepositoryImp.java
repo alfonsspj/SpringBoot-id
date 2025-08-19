@@ -1,10 +1,12 @@
 package org.alfonso.springboot.di.app.springbootdi.repositories;
 
 import org.alfonso.springboot.di.app.springbootdi.models.Product;
+import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 
 
+@Component
 public class ProductRepositoryImp implements ProductRepository{
 
     private List<Product> data;
