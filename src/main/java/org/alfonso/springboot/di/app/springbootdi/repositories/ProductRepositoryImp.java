@@ -1,12 +1,14 @@
 package org.alfonso.springboot.di.app.springbootdi.repositories;
 
 import org.alfonso.springboot.di.app.springbootdi.models.Product;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 import java.util.Arrays;
 import java.util.List;
 
 
-@Component
+//@Component
+@Repository // capa de datos --- especializacion de @Component -- esta clase es un  repositorio encargada de acceder a la bd
 public class ProductRepositoryImp implements ProductRepository{
 
     private List<Product> data;
@@ -28,9 +30,8 @@ public class ProductRepositoryImp implements ProductRepository{
     @Override
     public Product findById(Long id){
         return data.stream()
-                .filter(p -> p.getId().equals(id))  // obtenemos el elemento buscado -- devuelve un flujo con stream - un elemento
-                .findFirst() // devuelve un Optional(para evitar en nullPointerexception) de tipo Producto
-//                .orElseThrow(); // devuelve el objeto Producto -- devuelve excepcion sino se encontro
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
                 .orElse(null);
     }
 }

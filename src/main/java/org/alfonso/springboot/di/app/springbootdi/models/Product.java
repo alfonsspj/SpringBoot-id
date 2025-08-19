@@ -6,7 +6,6 @@ public class Product implements Cloneable{
     private String name;
     private Long price;
 
-    // en caso de que queramos con new crear la instancia sin parametros y pasar los datos con el set
     public Product() {
     }
 
@@ -45,7 +44,6 @@ public class Product implements Cloneable{
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
-            // devolvemos una instancia con los mismos datos del objeto
             return new Product(id, name, price);
         }
     }
