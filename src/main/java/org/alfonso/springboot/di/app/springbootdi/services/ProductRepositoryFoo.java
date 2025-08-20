@@ -2,12 +2,13 @@ package org.alfonso.springboot.di.app.springbootdi.services;
 
 import org.alfonso.springboot.di.app.springbootdi.models.Product;
 import org.alfonso.springboot.di.app.springbootdi.repositories.ProductRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import java.util.Collections;
 import java.util.List;
 
 
-//@Primary // implementacion por defecto (entre ProductRepositoryFoo y ProductServiceImpl)
+@Primary // implementacion por defecto (entre ProductRepositoryFoo y ProductServiceImpl)
 @Repository
 public class ProductRepositoryFoo implements ProductRepository {
 

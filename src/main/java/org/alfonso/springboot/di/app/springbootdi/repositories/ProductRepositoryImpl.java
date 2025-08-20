@@ -8,13 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@Primary
-@Repository // capa de datos --- especializacion de @Component -- esta clase es un  repositorio encargada de acceder a la bd
-public class ProductRepositoryImp implements ProductRepository{
+//@Primary
+//@Repository // capa de datos --- especializacion de @Component -- esta clase es un  repositorio encargada de acceder a la bd
+@Repository("productList") // por defecto lleva el nombre de la clase
+// los componentes por defecto tienen el nombre de la clase "productRepositoryImpl" (comenzando con minuscula))
+public class ProductRepositoryImpl implements ProductRepository{
 
     private List<Product> data;
 
-    public ProductRepositoryImp(){
+    public ProductRepositoryImpl(){
         this.data = Arrays.asList(
                 new Product(1L, "Memoria corsair 32", 300L),
                 new Product(2L, "Cpu Intel Core i9", 850L),

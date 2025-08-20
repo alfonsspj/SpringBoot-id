@@ -2,7 +2,7 @@ package org.alfonso.springboot.di.app.springbootdi.services;
 
 import org.alfonso.springboot.di.app.springbootdi.models.Product;
 import org.alfonso.springboot.di.app.springbootdi.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    //    @Autowired // inyeccion mediante atributo
+//    @Autowired // inyeccion mediante atributo
+//    @Qualifier("productList") // si es por atributo va Autowired junto con @Qualifier
     private ProductRepository repository;
 
     //  inyeccion mediante metodo setter
@@ -23,7 +24,8 @@ public class ProductServiceImpl implements ProductService {
 
 
     // inyeccion de dependencia mediante constructor -- no requiere @Autowired
-    public ProductServiceImpl(ProductRepository repository) {
+//    public ProductServiceImpl(@Qualifier("productRepositoryImpl") ProductRepository repository) {
+    public ProductServiceImpl(@Qualifier("productList") ProductRepository repository) {
         this.repository = repository;
     }
 
