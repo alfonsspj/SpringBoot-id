@@ -12,19 +12,10 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-//    @Autowired // inyeccion mediante atributo
-//    @Qualifier("productList") // si es por atributo va Autowired junto con @Qualifier
     private ProductRepository repository;
-
-    //  inyeccion mediante metodo setter
-//    @Autowired
-//    public void setRepository(ProductRepository repository) {
-//        this.repository = repository;
-//    }
 
 
     // inyeccion de dependencia mediante constructor -- no requiere @Autowired
-//    public ProductServiceImpl(@Qualifier("productRepositoryImpl") ProductRepository repository) {
     public ProductServiceImpl(@Qualifier("productList") ProductRepository repository) {
         this.repository = repository;
     }
@@ -34,9 +25,12 @@ public class ProductServiceImpl implements ProductService {
         return repository.findAll().stream()
                 .map(p -> {
                     Double priceTax = p.getPrice() * 1.25d;
-                    Product newProduct = (Product)  p.clone();
-                    newProduct.setPrice(priceTax.longValue());
-                    return newProduct;
+//                    Product newProduct = (Product)  p.clone();
+//                    newProduct.setPrice(priceTax.longValue());
+//                    return newProduct;
+
+                    p.setPrice(priceTax.longValue());
+                    return p;
                 }).collect(Collectors.toList());
     }
 

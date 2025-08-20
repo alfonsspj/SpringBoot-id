@@ -3,15 +3,15 @@ package org.alfonso.springboot.di.app.springbootdi.repositories;
 import org.alfonso.springboot.di.app.springbootdi.models.Product;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.web.context.annotation.SessionScope;
 import java.util.Arrays;
 import java.util.List;
 
 
-//@Primary
-//@Repository // capa de datos --- especializacion de @Component -- esta clase es un  repositorio encargada de acceder a la bd
-@Repository("productList") // por defecto lleva el nombre de la clase
-// los componentes por defecto tienen el nombre de la clase "productRepositoryImpl" (comenzando con minuscula))
+@Primary
+// maneja el contexto de la sesion -- se usa para carro de compras, login
+@SessionScope // para aplicaciones web -- una sesion dura varios request, cuando cerramos la pestaña se destruye la sesion y se reinician los datos
+@Repository("productList")
 public class ProductRepositoryImpl implements ProductRepository{
 
     private List<Product> data;
