@@ -1,13 +1,14 @@
 package org.alfonso.springboot.di.app.springbootdi.repositories;
 
 import org.alfonso.springboot.di.app.springbootdi.models.Product;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
 import java.util.List;
 
 
-//@Component
+@Primary
 @Repository // capa de datos --- especializacion de @Component -- esta clase es un  repositorio encargada de acceder a la bd
 public class ProductRepositoryImp implements ProductRepository{
 
