@@ -16,7 +16,7 @@ public class ProductRepositoryJson implements ProductRepository{
 
     public ProductRepositoryJson() {
 //        ClassPathResource resource = new ClassPathResource("json/products.json");// classPathResource hereda de Resource
-        Resource resource = new ClassPathResource("json/products.json");//
+        Resource resource = new ClassPathResource("json/product.json");//
         // convierte un archivo o inputStream a un objeto de java
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -33,6 +33,9 @@ public class ProductRepositoryJson implements ProductRepository{
 
     @Override
     public Product findById(Long id) {
-        return null;
+        return list.stream()
+                .filter( p -> p.getId().equals(id))
+                .findFirst()
+                .orElseThrow();// devuelve una exception sino lo encuentra
     }
 }

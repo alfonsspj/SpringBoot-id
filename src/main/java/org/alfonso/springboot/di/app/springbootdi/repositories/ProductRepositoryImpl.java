@@ -12,7 +12,7 @@ import java.util.List;
 // maneja el contexto de la sesion -- se usa para carro de compras, login
 //@SessionScope // para aplicaciones web -- una sesion dura varios request, cuando cerramos la pestaña se destruye la sesion y se reinician los datos
 //@RequestScope // el cliclo de vida, soloamente va a existir durante un request, una peticion
-@Primary
+//@Primary
 @Repository("productList")//  por defecto es del contexto singleton: una sola instancia para toda la aplicacion y es compartida por todos los clientes
 public class ProductRepositoryImpl implements ProductRepository{
 

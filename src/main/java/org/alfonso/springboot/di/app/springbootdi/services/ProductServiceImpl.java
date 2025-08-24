@@ -4,6 +4,7 @@ import org.alfonso.springboot.di.app.springbootdi.models.Product;
 import org.alfonso.springboot.di.app.springbootdi.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +17,20 @@ public class ProductServiceImpl implements ProductService {
 
     // 1 forma, la  2 forma es pasarla por argumento
 //    @Autowired
-    private Environment environment;
+//    private Environment environment;
+
+    @Value("${config.price.tax}")
+    private Double tax;
 
     private ProductRepository repository;
 
 
     // inyeccion de dependencia mediante constructor -- no requiere @Autowired
 //    public ProductServiceImpl(@Qualifier("productList") ProductRepository repository) {
-    public ProductServiceImpl(@Qualifier("productList") ProductRepository repository, Environment environment) {
+//    public ProductServiceImpl(@Qualifier("productList") ProductRepository repository, Environment environment) {
+    public ProductServiceImpl(ProductRepository repository) {
         this.repository = repository;
-        this.environment = environment;// 2 forma inyectarla por constructor
+//        this.environment = environment;// 2 forma inyectarla por constructor
     }
 
     @Override
@@ -33,16 +38,20 @@ public class ProductServiceImpl implements ProductService {
         return repository.findAll().stream()
                 .map(p -> {
 //                    Double priceTax = p.getPrice() * 1.25d;
-                    Double priceTax = p.getPrice() * environment.getProperty("config.price.tax", Double.class);
+//                    Double priceTax = p.getPrice() * environment.getProperty("config.price.tax", Double.class);
 //                    System.out.println(environment.getProperty("config.price.tax", Double.class));
+                    Double priceTax = p.getPrice() * tax;
+                    Product newProduct = (Product)  p.clone();
+                    newProduct.setPrice(priceTax.longValue());
+                    return newProduct;
 
                     //inmutable
 //                    Product newProduct = (Product)  p.clone();
 //                    newProduct.setPrice(priceTax.longValue());
 
                     //mutable -- esta cambiando la instancia original que esta en memoria del objeto
-                    p.setPrice(priceTax.longValue());
-                    return p;
+//                    p.setPrice(priceTax.longValue());
+//                    return p;
 
                 }).collect(Collectors.toList());
     }

@@ -12,7 +12,7 @@ public interface ProductRepository {
     List<Product> findAll();
     Product findById(Long id);
 
-    @Primary // implementacion por defecto (entre ProductRepositoryFoo y ProductServiceImpl)
+//    @Primary // implementacion por defecto (entre ProductRepositoryFoo y ProductServiceImpl)
     @Repository
     class ProductRepositoryFoo implements ProductRepository {
 
