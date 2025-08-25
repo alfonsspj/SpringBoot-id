@@ -28,7 +28,8 @@ public class ProductServiceImpl implements ProductService {
     // inyeccion de dependencia mediante constructor -- no requiere @Autowired
 //    public ProductServiceImpl(@Qualifier("productList") ProductRepository repository) {
 //    public ProductServiceImpl(@Qualifier("productList") ProductRepository repository, Environment environment) {
-    public ProductServiceImpl(ProductRepository repository) {
+//    public ProductServiceImpl(@Qualifier("productRepositoryJson") ProductRepository repository) {
+    public ProductServiceImpl(@Qualifier("productJson") ProductRepository repository) { // personalizado
         this.repository = repository;
 //        this.environment = environment;// 2 forma inyectarla por constructor
     }

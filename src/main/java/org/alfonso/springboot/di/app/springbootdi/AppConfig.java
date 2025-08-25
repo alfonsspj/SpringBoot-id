@@ -16,8 +16,9 @@ public class AppConfig {
 //    public ProductRepository productRepositoryJson(){
 //        return new ProductRepositoryJson();// tipo concreto
 //    }
-    @Bean // cuando el componente es anotado con Bean podemos omitir el public
-    @Primary
+//    @Bean // cuando el componente es anotado con Bean podemos omitir el public
+    @Bean("productJson") // personalizado con nombre distinto al del metodo -- nombre logico que va a tener el componente
+//    @Primary
     ProductRepository productRepositoryJson(){
         return new ProductRepositoryJson();
     }
